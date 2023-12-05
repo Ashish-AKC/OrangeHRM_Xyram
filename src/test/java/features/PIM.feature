@@ -1,3 +1,4 @@
+@pimmodule @regression @smoke
 Feature: Employee configuration
 
 Background: Launch Application
