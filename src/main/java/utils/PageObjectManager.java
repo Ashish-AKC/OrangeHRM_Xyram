@@ -2,7 +2,8 @@ package utils;
 
 import org.openqa.selenium.WebDriver;
 
-import pageObjects.LoginPOM;
+import pageObjects.LoginPage;
+import pageObjects.PIMpage;
 
 /**
  * This single class responsible to create objects for all page object classes
@@ -12,13 +13,23 @@ import pageObjects.LoginPOM;
  */
 public class PageObjectManager {
 	public WebDriver driver;
-	LoginPOM login;
+	LoginPage login;
+	PIMpage pimpage;
 
 	public PageObjectManager(WebDriver driver) {
 		this.driver = driver;
 	}
 
-	public LoginPOM getLoginPage() {
-		return login = new LoginPOM(driver);
+	/**
+	 * Here we are initializing driver to Login page.
+	 *
+	 * @return
+	 */
+	public LoginPage getLoginPage() {
+		return login = new LoginPage(driver);
+	}
+
+	public PIMpage getPimPage() {
+		return pimpage = new PIMpage(driver);
 	}
 }

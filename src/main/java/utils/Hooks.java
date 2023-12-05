@@ -12,6 +12,8 @@ import io.cucumber.java.AfterStep;
 import io.cucumber.java.Scenario;
 
 /**
+ * Hooks class is responsible to take screenshot when a step get failed to
+ * execute
  *
  * @author Ashok
  *
@@ -23,16 +25,22 @@ public class Hooks {
 	public WebDriver driver;
 
 	public Hooks(TestContextSetup testContextSetup) {
-
 		this.testContextSetup = testContextSetup;
 	}
+
+	/**
+	 * This method will take screenshot when a step get failed to execute and attach
+	 * into the report.
+	 *
+	 * @param scenario: This parameter will read the current scenario that has been
+	 *                  executed.
+	 * @throws Throwable
+	 */
 
 	@AfterStep
 	public void AddScreenshot(Scenario scenario) throws Throwable {
 		WebDriver driver = testContextSetup.testBase.webDriverManager();
-
-		if (scenario.isFailed()) {
-			// take screenshot and attached to the report
+		if (scenario.isFailed()) { // take screenshot and attached to the report
 			File sourcePath = null;
 			try {
 				sourcePath = ((TakesScreenshot) driver).getScreenshotAs(OutputType.FILE);
